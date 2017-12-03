@@ -78,6 +78,32 @@ window.addEventListener('load', function() {
           var nps = promoters - detractors;
           console.log('nps: ' + nps);
 
+          // hallando la cantidad todal de estudiantes ACTIVAS por generación
+          var activeStudents = 0;
+          for (var i1 = 0; i1 < totalstudents; i1++) {
+            if (students[i1]['active']) {
+              activeStudents++;
+
+              var superantech = 0 ;
+              for (k = 0; k < students[i1]['sprints'].length; k++) {
+                var score = students[i1]['sprints'][k]['score'] ;
+                var numberSprint = students[i1]['sprints'][k]['number'];
+                if (score['tech'] > 1260) {
+                  superantech ++;
+                } else {
+                  superantech = superantech;
+                }
+                console.log('cantidad de estudiantes que superan la meta puntos tecnicos de el sprint: ' + numberSprint + ' es: ' + superantech);
+              };// for que recorre cada srpint de todas las esrudianyes de la sede y generacion escogida
+            };
+          }
+
+          // hallando la cantidad todal de estudiantes INACTIVAS por generacion
+          var inactiveStudents = totalstudents - activeStudents;
+          console.log('activas: ' + activeStudents);
+          console.log('inactivas: ' + inactiveStudents);
+
+
           // cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos tecnicos 70% en promedio por todos los sprints sprint
           /*var studentsSuperan = 0;
             for (j = 0; j < data[sede][generation]['students'][i]['sprints'].length; j++) {
@@ -91,15 +117,10 @@ window.addEventListener('load', function() {
 
 
           // creando for que recorra los datos de las estudiantes
-          for (m = 0; m < totalstudents; m++) {
+          /*for (m = 0; m < totalstudents; m++) {
             var arrStudents = students[m] ;
-            activeStudents = 0 ;
             // condicion que solo recorre estuidnates activas
             if (arrStudents.active === true) {
-              var activeStudents = (activeStudents + 1);
-
-              console.log('las estudiantes activas son: ' + activeStudents);
-
               // cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos tecnicos 70% en promedio por todos los sprints sprint
               var superantech = 0;
               for (k = 0; k < students[m]['sprints'].length; k++) {
@@ -111,7 +132,7 @@ window.addEventListener('load', function() {
                 }
               };// for que recorre cada srpint de todas las esrudianyes de la sede y generacion escogida
               console.log('cantidad de estudiantes que superan la meta puntos tecnicos de todos los sprint: ' + superantech);
-            //}// condicion que solo recorre estudiantes activas
+            // }// condicion que solo recorre estudiantes activas
             /*
             for (var j = 0; j < data[sede][generation]['students'][i]['sprints'].length; j++) {
 
@@ -131,9 +152,9 @@ window.addEventListener('load', function() {
                 var studentsHighScore = score[i2].hse.length;
                 console.log(studentsHighScore);
               };
-            }; */
+            };
             } ;// condicion que toma en cuenta solo etudinates activas
-          }; // for que recorre la data de todad las estudinates de la sede y genración escogida
+          }; */// for que recorre la data de todad las estudinates de la sede y genración escogida
 
 
           // espacio puesto a proposito para separar.
@@ -232,22 +253,6 @@ window.addEventListener('load', function() {
           };*/
 
 
-
-
-
-
-          // creando div que almacenará el # de estudiates
-          /*var studentsDiv = document.createElement('div');
-          studentsDiv.textContent = totalstudents;
-          console.log(studentsDiv);
-
-          // creando div que almacenará el # de estudiates INACTIVAS
-          var inactiveStudentsDiv = document.createElement('div');
-          inactiveStudents.textContent = inactiveStudents;
-          console.log(inactiveStudentsDiv);
-          */
-
-
 /*
 var students = data[sede][generation].students ;
           var studentAcount = students.length;
@@ -263,13 +268,4 @@ var students = data[sede][generation].students ;
             console.log(inactiveStudents);
             var scoreHse = students[i1].sprints;
 
-          };
-          // creando div que almacenará el # de estudiates
-          var studentsDiv = document.createElement('div');
-          studentsDiv.textContent = totalstudents;
-          console.log(studentsDiv);
-          // creando div que almacenará el # de estudiates INACTIVAS
-          var inactiveStudentsDiv = document.createElement('div');
-          inactiveStudents.textContent = inactiveStudents;
-          console.log(inactiveStudentsDiv);
-*/
+          }; */
