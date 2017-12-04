@@ -28,7 +28,6 @@ window.addEventListener('load', function() {
       var sede = event.target.dataset.sede;
       console.log('la sede es : ' + sede); // AQP
       // console.log(typeof sede); // string
-
       for (var j = 0; j < listGenerations.length; j++) {
         listGenerations[j].addEventListener('click', function(event) {
           // sconsole.log(event.target);
@@ -39,6 +38,8 @@ window.addEventListener('load', function() {
           var students = data[sede][generation]['students']; // array de toda la data de students
           var totalstudents = data[sede][generation].students.length ; // numero de estudiantes de la sede y generación escogida
           // console.log(data[sede][generation].ratings.length);
+          console.log(students);
+          console.log(totalstudents);
           console.log('la cantidad de estudiantes en esta sede y generación es: ' + totalstudents);
 
           // puntuacion promedio de los profes
@@ -83,12 +84,11 @@ window.addEventListener('load', function() {
           for (var i1 = 0; i1 < totalstudents; i1++) {
             if (students[i1]['active']) {
               activeStudents++;
-
               var superantech = 0 ;
               for (k = 0; k < students[i1]['sprints'].length; k++) {
                 var score = students[i1]['sprints'][k]['score'] ;
-                var numberSprint = students[i1]['sprints'][k]['number'];
-                if (score['tech'] > 1260) {
+                var numberSprint = students[i1]['sprints'][k]['number'] ;
+                if (students[i1]['sprints'][k]['score']['tech'] > 1260) {
                   superantech ++;
                 } else {
                   superantech = superantech;
@@ -102,8 +102,6 @@ window.addEventListener('load', function() {
           var inactiveStudents = totalstudents - activeStudents;
           console.log('activas: ' + activeStudents);
           console.log('inactivas: ' + inactiveStudents);
-
-
           // cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos tecnicos 70% en promedio por todos los sprints sprint
           /*var studentsSuperan = 0;
             for (j = 0; j < data[sede][generation]['students'][i]['sprints'].length; j++) {
