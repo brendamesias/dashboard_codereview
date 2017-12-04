@@ -46,6 +46,7 @@ a{
   border: 0;
   font-weight: 600;
   margin-bottom: 7px;
+ 
 }
 .sede{
   padding: 5px;
@@ -55,6 +56,8 @@ a{
   color: #000000;
   margin-top: 10px;
   margin-bottom: 10px;
+  display: inline-block;
+  
 }
 .sede:hover{
   background-color: #FFA500;
@@ -66,46 +69,68 @@ a .sede{
   display: none;
 }
 .show {
-  display: block;
+  display:inline-block;
+
 }
 .generation{
   width: 100px;
   background-color: #D0D0D0;
   font-size: 16px;
 }
-.container_students{
-  outline: 5px solid greenyellow;
+#container_students{
   margin: 1%;
   display:inline-block;
-  width: 1200px;
-  left: 50px;
+  width: 1100px;
+  height: 400px;
+  left: 230px;
+  top: 100px;
+  position: relative;
+  outline: 3px solid gold;
+  padding-bottom: 50px;
 }
-.perfil img{
+/*.perfil img{
   padding: 1.5%;
-  outline: 1px solid yellow;
   display: inline-block;
+  position: relative;
+  left: 120px;
+  
+  
+}*/
+
+.photo_perfil{
+  display: inline-block;
+  position: relative;
+  left: 50px;
+  width: 170px;
+  height:170px;
+  top: 70px;
+
+
 }
 .perfil .basic_data_perfil{
   position: relative;
   padding: 1%;
   padding-left: 2%;
-  outline: 6px solid blue;
+  bottom: 40px;
+  left: 70px;
+  outline: 3px solid indianred;
   display: inline-block;
 }
-.basic_data_perfil div{
+.basic_data_perfil {
   width: 15%;
   outline: 1px solid orange;
   display:inline-block;
   position: relative;
   left: 30px;
 }
-.basic_data_perfil div span{
+
+span{
   outline: 1px solid red;
   display: inline-block;
 }
-.basic_data_perfil div h2{
+h2{
   font-size: 15px;
-  outline: 1px solid purple;
+  outline: 1px solid rgb(165, 51, 165);
   display: inline-block;
 }
 #skills{
@@ -114,9 +139,13 @@ a .sede{
   outline: 1px solid black;
   display: inline-block;
 }
-.container_students table{
+.container_students{
   margin-left: 1%;
   padding: 2%;
   outline: 1px solid blue;
   display: inline-block;
+  position: relative;
+  left: 160px;
+  top: 50px;
+  width: 100px;
 }
