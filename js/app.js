@@ -144,7 +144,7 @@ window.addEventListener('load', function() {
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
               ['Task', 'Hours per Day'],
-              ['Activas', activeStudents],
+              ['Activas', a],
               ['Inactivas', inactiveStudents],
 
             ]);
