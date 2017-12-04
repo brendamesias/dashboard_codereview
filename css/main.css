@@ -61,7 +61,7 @@ a{
   background-color: #FFA500;
 }
 a .sede{
-  background-color:#FFA500 ;
+  background-color: salmon;
 }
 .hiden {
   display: none;
@@ -75,26 +75,30 @@ a .sede{
   font-size: 16px;
 }
 .container_students{
-  outline: 1px solid green;
+  outline: 5px solid greenyellow;
   margin: 1%;
-  display: block;
+  display:inline-block;
+  width: 1200px;
+  left: 50px;
 }
 #perfil img{
   padding: 1.5%;
   outline: 1px solid yellow;
-  display: inline;
+  display: inline-block;
 }
 #perfil .basic_data_perfil{
   position: relative;
   padding: 1%;
   padding-left: 2%;
-  outline: 1px solid blue;
+  outline: 6px solid blue;
   display: inline-block;
 }
 .basic_data_perfil div{
   width: 15%;
   outline: 1px solid orange;
-  display: block;
+  display:inline-block;
+  position: relative;
+  left: 30px;
 }
 .basic_data_perfil div span{
   outline: 1px solid red;
