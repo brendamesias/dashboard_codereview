@@ -116,3 +116,86 @@ a .sede{
   outline: 1px solid blue;
   display: inline-block;
 }
+
+/*estilos de cuadro de datos*/
+
+.box {
+  width: 120px;
+  height: 130px;
+  font-size: 15px;
+  border:3px solid #e6e6e6;
+  color: orange;
+  text-align: center;
+}
+
+.one {
+  position: absolute;
+  top: 250px;
+  left: 250px;
+}
+
+.two {
+  position: absolute;
+  top: 250px;
+  left: 400px;
+}
+
+.three {
+  position: absolute;
+  top: 250px;
+  left: 600px;
+}
+
+.four {
+  position: absolute;
+  top: 250px;
+  left: 750px;
+}
+
+.five {
+  position: absolute;
+  top: 250px;
+  left: 950px;
+}
+
+.six {
+  position: absolute;
+  top: 250px;
+  left: 1100px;
+  display: inline-block;
+}
+
+.seven {
+  position: absolute;
+  top: 400px;
+  left: 400px;
+}
+
+.eight {
+  position: absolute;
+  top: 400px;
+  left: 950px;
+}
+
+.nine {
+  position: absolute;
+  top: 550px;
+  left: 400px;
+}
+
+.ten {
+  position: absolute;
+  top: 550px;
+  left: 680px;
+}
+
+.eleven {
+  position: absolute;
+  top: 550px;
+  left: 950px;
+}
+
+.number {
+  color: green;
+  font-weight: 700;
+}
