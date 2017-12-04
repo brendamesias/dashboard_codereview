@@ -1,4 +1,27 @@
 window.addEventListener('load', function() {
+
+  // agregando elemtos del student.html al DOM
+  var containerStudents = document.getElementById('container_students');
+  var perfil = document.getElementById('perfil');
+  var photoPerfil = document.getElementById('photo_perfil');
+  var basicDataPerfil = document.getElementsByClassName('basic_data_perfil');
+  var name = document.getElementById('name');
+  var active = document.getElementById('active');
+  var skills = document.getElementById('skills');
+  var tech = document.getElementsByClassName('tech');
+  var notatechtotal = document.getElementById('notatechtotal');
+  var life = document.getElementsByClassName('life');
+  var notaHSEtotal = document.getElementById('notaHSEtotal');
+  var tech1sprint = document.getElementById('tech_1sprint');
+  var tech2sprint = document.getElementById('tech_2sprint');
+  var tech3sprint = document.getElementById('tech_3sprint');
+  var tech4sprint = document.getElementById('tech_4sprint');
+  var hse1sprint = document.getElementById('hse_1sprint');
+  var hse2sprint = document.getElementById('hse_2sprint');
+  var hse3sprint = document.getElementById('hse_3sprint');
+  var hse4sprint = document.getElementById('hse_4sprint');
+
+
   // variable que almacena  el texto junto de sede y generacion, el cual se muestra en la pantalla
   var sedeGeneration = document.getElementById('sede_generation');
   // console.log(sedeGeneration); // <a href="#" id="sede_generation">NUESTRAS SEDES</a>
@@ -81,6 +104,31 @@ window.addEventListener('load', function() {
           // hallando la cantidad todal de estudiantes ACTIVAS por generación
           var activeStudents = 0;
           for (var i1 = 0; i1 < totalstudents; i1++) {
+            var studentName = students[i1]['name'];
+            var estadoactive = students[i1]['active'];
+            var photo = students[i1]['photo'] ;
+            totalTech = 0 ;
+            for (var j = 0; j < students[i1]['sprints'].length; j++) {
+              totalTech = totalTech + students[i1]['sprints'][j]['score']['tech'] ;
+            }
+            var totaltechXsprints = 1260 * students[i1]['sprints'].length
+            var promeditech = totalTech / totaltechXsprints;
+            console.log(promeditech);
+
+            var skilltech = students[i1]['sprints'];
+            // console.log(studentName);
+
+            var informationStudent = perfil.cloneNode(true);
+            // console.log(informationStudent.children[0].src);
+
+            informationStudent.children[0].src = photo;
+            informationStudent.children[1].firstElementChild.lastElementChild.textContent = studentName ;
+            informationStudent.children[1].lastElementChild.lastElementChild.textContent = estadoactive ;
+
+
+            containerStudents.appendChild(informationStudent);
+
+
             if (students[i1]['active'] === true) { // condicion para solo sacar data de estudinates activas
               activeStudents++;
               // console.log(students[i1]); // array de toda la informacion sólo de estudinates activas
@@ -115,6 +163,9 @@ window.addEventListener('load', function() {
           var inactiveStudents = totalstudents - activeStudents;
           console.log('numero de estudiantes activas: ' + activeStudents);
           console.log('numero de estudinates inactivas: ' + inactiveStudents);
+
+          // jalando data de estudiantes para agregar a cuadrso de cada estudiante
+
 
           //
         }); // evento que sucede al dar click en cualquier generación;
