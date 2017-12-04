@@ -11,7 +11,7 @@ Se realizo un pequeño estudio de investigación sobre quienes son nuestros usua
 
 En este proyecto nuestros usuarios son las Training Managers (TMs) de **Laboratoria** y nos piden proyectar datas y porcentajes mediante una pagina web para poder optimizar su tiempo. Para esto, hemos conversado con Alejandra:
 <br>
-![ale-TM](assets/images/ale.png)
+![ale-TM](./assets/images/ale.png)
 <br>
 para poder resolver sus necesidades sobre este proyecto. Al terminar la encuesta, hemos podido obtener que la información primordial es la data de las estudiantes; Saber quien ha obtenido "Sobre lo esperaro", "Promedio regular", "bajo lo esperado".  
 
