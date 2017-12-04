@@ -92,7 +92,7 @@ window.addEventListener('load', function() {
                 acumuladorscoreHSE = acumuladorscoreHSE + students[i1]['sprints'][i3]['score']['hse'] ;
                 acumuladorscoretech = acumuladorscoretech + students[i1]['sprints'][i3]['score']['tech'] ;
 
-                 console.log(acumuladorscoretech);
+                // console.log(acumuladorscoretech);
                 // console.log(1260 * students[i1]['sprints'].length);
                 var superantech = 0 ;
                 var superanHSE = 0 ;
@@ -109,10 +109,8 @@ window.addEventListener('load', function() {
               };
             };
           }// condicion que toma en cuenta solo estudiantes activas
-
           console.log('la cantidad de estudiantes que superan la meta de 70% tech en promedio de todos los sprints es: ' + superantech);
           console.log('la cantidad de estudiantes que superan la meta de 70% en HSE en promedio de todos los sprints es: ' + superanHSE);
-
           // hallando la cantidad todal de estudiantes INACTIVAS por generacion
           var inactiveStudents = totalstudents - activeStudents;
           console.log('numero de estudiantes activas: ' + activeStudents);
@@ -123,5 +121,4 @@ window.addEventListener('load', function() {
       };// for que recorre las generaciones para hacer eventos click en cualquier generacipon
     });// función o evento general click en cualquier  sede  multiples eventos
   };// for que recorre sedes para hacer ventos click en cualquier sede
-
 });// general
