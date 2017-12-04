@@ -1,0 +1,46 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Fjalla One', sans-serif;
+  text-align: center;
+}
+.box-header{
+  display: inline-block;
+}
+header{
+  position: relative;
+}
+img{
+  width: 200px;
+}
+li{
+  display: inline;
+  list-style: none;
+  margin: 5px;
+
+}
+li:hover{
+  color:#f9a91a;
+}
+
+li a{
+  color: inherit;
+  text-decoration: none;
+}
+nav{
+  position: absolute;
+  right: 5%;
+  top: 40%;
+  transform: translateY(-30%);
+
+}
+.container{
+  position: absolute;
+  left: 30%;
+}
+.country{
+  margin: 10px;
+  height: 100px;
+  width: 500px;
+  color: #ffff;
+  background:  #FFA500;
+}
