@@ -5,7 +5,7 @@
 * **Cliente:** _Laboratoria_
 
 ***
-Parte 1: **Entrevista**
+## Parte 1: **Entrevista**
 
 Se realizo un pequeño estudio de investigación sobre quienes son nuestros usuarios y cuales son sus necesidades.
 
@@ -28,11 +28,13 @@ Adicionalmente, estos son los requerimientos:
 - La puntuación promedio de l@s profesores.  
 - La puntuación promedio de l@s jedi masters.  
 
- Parte 2: **Inicializando Proyecto**  
+## Parte 2: **Inicializando Proyecto**  
  1. Se realizo un archivo HTML, JS, Y CSS junto con una carpeta assets donde íran nuestras imagenes relacionadas al proyecto.
  2. Se esta vínculando nuestro archivo ***data.js*** (donde se encuentra la información príncipal) con ***app.js*** para extraer la información y mostrarlo con tablas estadísticas.
  3. Se esta enlazando tablas estadísticas con ***Google Charts*** para que la estadística de las estudiantes Laboratoria se muestren en nuestra pagína web.
 
+## Parte 3: **Resultado Final**
 
+Exposición General
 
 > Realizado por Apolo8
