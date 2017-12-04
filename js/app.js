@@ -123,31 +123,6 @@ window.addEventListener('load', function() {
           // hallando la cantidad todal de estudiantes ACTIVAS por generación
           var activeStudents = 0;
           for (var i1 = 0; i1 < totalstudents; i1++) {
-            var studentName = students[i1]['name'];
-            var estadoactive = students[i1]['active'];
-            var photo = students[i1]['photo'] ;
-            totalTech = 0 ;
-            for (var j = 0; j < students[i1]['sprints'].length; j++) {
-              totalTech = totalTech + students[i1]['sprints'][j]['score']['tech'] ;
-            }
-            var totaltechXsprints = 1260 * students[i1]['sprints'].length
-            var promeditech = totalTech / totaltechXsprints;
-            console.log(promeditech);
-
-            var skilltech = students[i1]['sprints'];
-            // console.log(studentName);
-
-            var informationStudent = perfil.cloneNode(true);
-            // console.log(informationStudent.children[0].src);
-
-            informationStudent.children[0].src = photo;
-            informationStudent.children[1].firstElementChild.lastElementChild.textContent = studentName ;
-            informationStudent.children[1].lastElementChild.lastElementChild.textContent = estadoactive ;
-
-
-            containerStudents.appendChild(informationStudent);
-
-
             if (students[i1]['active'] === true) { // condicion para solo sacar data de estudinates activas
               activeStudents++;
               // console.log(students[i1]); // array de toda la informacion sólo de estudinates activas
@@ -174,8 +149,8 @@ window.addEventListener('load', function() {
                   superanHSE = superanHSE ;
                 }
               };
-            };
-          }// condicion que toma en cuenta solo estudiantes activas
+            };// condicion que toma en cuenta solo estudiantes activas
+          }
           console.log('la cantidad de estudiantes que superan la meta de 70% tech en promedio de todos los sprints es: ' + superantech);
           console.log('la cantidad de estudiantes que superan la meta de 70% en HSE en promedio de todos los sprints es: ' + superanHSE);
           // hallando la cantidad todal de estudiantes INACTIVAS por generacion
@@ -184,8 +159,44 @@ window.addEventListener('load', function() {
           console.log('numero de estudinates inactivas: ' + inactiveStudents);
 
           // jalando data de estudiantes para agregar a cuadrso de cada estudiante
+          for (var i1 = 0; i1 < totalstudents; i1++) {
+            var studentName = students[i1]['name'];
+            var estadoactive = students[i1]['active'];
+            var photo = students[i1]['photo'] ;
+            totalTech = 0 ;
+            totalHSE = 0 ;
+            for (var j = 0; j < students[i1]['sprints'].length; j++) {
+              totalTech = totalTech + students[i1]['sprints'][j]['score']['tech'] ;
+              totalHSE = totalHSE + students[i1]['sprints'][j]['score']['hse'] ;
+            }
+            var totaltechXsprint = 1800 * students[i1]['sprints'].length ;
+            var promeditech = totalTech / (totaltechXsprint / 100) ;
+            var totalHSEXsprint = 1200 * students[i1]['sprints'].length ;
+            var promediHSE = totalHSE / (totalHSEXsprint / 100) ;
 
+            var informationStudent = perfil.cloneNode(true);
+            // console.log(informationStudent.children[3].firstElementChild.children[1].children);
 
+            informationStudent.children[0].src = photo;
+            informationStudent.children[1].firstElementChild.lastElementChild.textContent = studentName ;
+            informationStudent.children[1].lastElementChild.lastElementChild.textContent = estadoactive ;
+            informationStudent.children[2].firstElementChild.lastElementChild.textContent = Math.round(promeditech) + '%' ;
+            informationStudent.children[2].lastElementChild.lastElementChild.textContent = Math.round(promediHSE) + '%' ;
+            for (var i4 = 1; i4 < informationStudent.children[3].firstElementChild.children[1].children.length; i4++) {
+              var noteTechXsprint = informationStudent.children[3].firstElementChild.children[1].children[i4];
+               console.log(noteTechXsprint);
+              for (var i5 = 0; i5 < students[i1]['sprints'].length; i5++) {
+                var scoreTechXsprint = students[i1]['sprints'][i5]['score']['tech'];
+                // console.log(scoreTechXsprint);
+                // console.log(i5);
+                var porcenTechXsprint = Math.round(scoreTechXsprint / 18) ;
+                console.log(porcenTechXsprint);
+                // noteTechXsprint.textContent = porcenTechXsprin) + '%' ;
+              }
+            }
+
+            containerStudents.appendChild(informationStudent);
+          }
           //
         }); // evento que sucede al dar click en cualquier generación;
       };// for que recorre las generaciones para hacer eventos click en cualquier generacipon
