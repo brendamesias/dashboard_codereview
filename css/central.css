@@ -12,35 +12,27 @@ header{
 img{
   width: 200px;
 }
-li{
-  display: inline;
-  list-style: none;
-  margin: 5px;
-
-}
-li:hover{
-  color:#f9a91a;
-}
-
-li a{
-  color: inherit;
-  text-decoration: none;
-}
 nav{
   position: absolute;
   right: 5%;
   top: 40%;
   transform: translateY(-30%);
-
+}
+a{
+  text-decoration: none;
 }
 .container{
-  position: absolute;
-  left: 30%;
+  margin: 5px;
 }
 .country{
-  margin: 10px;
   height: 100px;
-  width: 500px;
-  color: #ffff;
-  background:  #FFA500;
+  width:100%;
+  border-radius: 60%;
+  color: #000000;
+  font-size: 40px;
+  background: #FFA500;
+}
+.country:hover{
+  background: #ffff;
+  color:  #FFA500;
 }
