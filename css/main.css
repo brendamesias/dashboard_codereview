@@ -32,7 +32,6 @@ font-weight: bolder;
 a{
   text-decoration: none;
   text-align: center;
-  display: block;
   border-radius: 5px;
   margin-bottom: 2px;
 }
@@ -79,12 +78,12 @@ a .sede{
   margin: 1%;
   display: block;
 }
-.perfil img{
+#perfil img{
   padding: 1.5%;
   outline: 1px solid yellow;
   display: inline;
 }
-.perfil .basic_data_perfil{
+#perfil .basic_data_perfil{
   position: relative;
   padding: 1%;
   padding-left: 2%;
@@ -111,7 +110,7 @@ a .sede{
   outline: 1px solid black;
   display: inline-block;
 }
-.container_students table{
+#container_students table{
   margin-left: 1%;
   padding: 2%;
   outline: 1px solid blue;

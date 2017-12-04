@@ -1,6 +1,32 @@
 window.addEventListener('load', function() {
+
+  // agregando elemtos del student.html al DOM
+  var containerStudents = document.getElementById('container_students');
+  var perfil = document.getElementById('perfil');
+  var photoPerfil = document.getElementById('photo_perfil');
+  var basicDataPerfil = document.getElementsByClassName('basic_data_perfil');
+  var name = document.getElementById('name');
+  var active = document.getElementById('active');
+  var skills = document.getElementById('skills');
+  var tech = document.getElementsByClassName('tech');
+  var notatechtotal = document.getElementById('notatechtotal');
+  var life = document.getElementsByClassName('life');
+  var notaHSEtotal = document.getElementById('notaHSEtotal');
+  var tech1sprint = document.getElementById('tech_1sprint');
+  var tech2sprint = document.getElementById('tech_2sprint');
+  var tech3sprint = document.getElementById('tech_3sprint');
+  var tech4sprint = document.getElementById('tech_4sprint');
+  var hse1sprint = document.getElementById('hse_1sprint');
+  var hse2sprint = document.getElementById('hse_2sprint');
+  var hse3sprint = document.getElementById('hse_3sprint');
+  var hse4sprint = document.getElementById('hse_4sprint');
+
+
   // variable que almacena  el texto junto de sede y generacion, el cual se muestra en la pantalla
-  var sedeGeneration = document.getElementById('sede_generation');
+  var sedeGenerationCero = document.getElementById('sede_generation_0');
+  var sedeGenerationUno = document.getElementById('sede_generation_1');
+  var sedeGenerationDos = document.getElementById('sede_generation_2');
+  var sedeGenerationTres = document.getElementById('sede_generation_3');
   // console.log(sedeGeneration); // <a href="#" id="sede_generation">NUESTRAS SEDES</a>
 
   // variable que almacena la lista de sedes
@@ -17,9 +43,24 @@ window.addEventListener('load', function() {
   var sedes = document.querySelectorAll('.sede');
   // console.log(sedes); // [a.sede =arequipa, a.sede =mexico, a.sede = lima, a.sede = chile] // lista de nodos
 
-  sedeGeneration.addEventListener('click', showListSedes);
+  sedeGenerationCero.addEventListener('click', showListSedes);
+  function showListSedes() {
+
+    alert('hola');
+    //console.log(event.target);
+    //listSedesCero.classList.toggle('show');
+  };
+  sedeGenerationUno.addEventListener('click', showListSedes);
   function showListSedes(event) {
-    listSedes.classList.toggle('show');
+    event.target.classList.toggle('show');
+  };
+  sedeGenerationDos.addEventListener('click', showListSedes);
+  function showListSedes(event) {
+    listSedesDos.classList.toggle('show');
+  };
+  sedeGenerationTres.addEventListener('click', showListSedes);
+  function showListSedes(event) {
+    listSedesTres.classList.toggle('show');
   };
 
   for (var i = 0; i < sedes.length; i++) {
@@ -28,6 +69,8 @@ window.addEventListener('load', function() {
       var sede = event.target.dataset.sede;
       console.log('la sede es : ' + sede); // AQP
       // console.log(typeof sede); // string
+      console.log(event.target);
+
       for (var j = 0; j < listGenerations.length; j++) {
         listGenerations[j].addEventListener('click', function(event) {
           // sconsole.log(event.target);
@@ -38,8 +81,6 @@ window.addEventListener('load', function() {
           var students = data[sede][generation]['students']; // array de toda la data de students
           var totalstudents = data[sede][generation].students.length ; // numero de estudiantes de la sede y generación escogida
           // console.log(data[sede][generation].ratings.length);
-          console.log(students);
-          console.log(totalstudents);
           console.log('la cantidad de estudiantes en esta sede y generación es: ' + totalstudents);
 
           // puntuacion promedio de los profes
@@ -82,188 +123,72 @@ window.addEventListener('load', function() {
           // hallando la cantidad todal de estudiantes ACTIVAS por generación
           var activeStudents = 0;
           for (var i1 = 0; i1 < totalstudents; i1++) {
-            if (students[i1]['active']) {
+            var studentName = students[i1]['name'];
+            var estadoactive = students[i1]['active'];
+            var photo = students[i1]['photo'] ;
+            totalTech = 0 ;
+            for (var j = 0; j < students[i1]['sprints'].length; j++) {
+              totalTech = totalTech + students[i1]['sprints'][j]['score']['tech'] ;
+            }
+            var totaltechXsprints = 1260 * students[i1]['sprints'].length
+            var promeditech = totalTech / totaltechXsprints;
+            console.log(promeditech);
+
+            var skilltech = students[i1]['sprints'];
+            // console.log(studentName);
+
+            var informationStudent = perfil.cloneNode(true);
+            // console.log(informationStudent.children[0].src);
+
+            informationStudent.children[0].src = photo;
+            informationStudent.children[1].firstElementChild.lastElementChild.textContent = studentName ;
+            informationStudent.children[1].lastElementChild.lastElementChild.textContent = estadoactive ;
+
+
+            containerStudents.appendChild(informationStudent);
+
+
+            if (students[i1]['active'] === true) { // condicion para solo sacar data de estudinates activas
               activeStudents++;
-              var superantech = 0 ;
-              for (k = 0; k < students[i1]['sprints'].length; k++) {
-                var score = students[i1]['sprints'][k]['score'] ;
-                var numberSprint = students[i1]['sprints'][k]['number'] ;
-                if (students[i1]['sprints'][k]['score']['tech'] > 1260) {
-                  superantech ++;
+              // console.log(students[i1]); // array de toda la informacion sólo de estudinates activas
+              // console.log(students[i1]['sprints']); // array de los prints que ha cursado cada alumna
+              // console.log(students[i1]['sprints'].length);
+              var acumuladorscoretech = 0 ;
+              var acumuladorscoreHSE = 0 ;
+              for (var i3 = 0; i3 < students[i1]['sprints'].length; i3++) {
+                acumuladorscoreHSE = acumuladorscoreHSE + students[i1]['sprints'][i3]['score']['hse'] ;
+                acumuladorscoretech = acumuladorscoretech + students[i1]['sprints'][i3]['score']['tech'] ;
+
+                // console.log(acumuladorscoretech);
+                // console.log(1260 * students[i1]['sprints'].length);
+                var superantech = 0 ;
+                var superanHSE = 0 ;
+                if (acumuladorscoretech > 1260 * students[i1]['sprints'].length) {
+                  superantech ++ ;
                 } else {
                   superantech = superantech;
                 }
-                console.log('cantidad de estudiantes que superan la meta puntos tecnicos de el sprint: ' + numberSprint + ' es: ' + superantech);
-              };// for que recorre cada srpint de todas las esrudianyes de la sede y generacion escogida
+                if (acumuladorscoreHSE > 840 * students[i1]['sprints'].length) {
+                  superanHSE ++ ;
+                } else {
+                  superanHSE = superanHSE ;
+                }
+              };
             };
-          }
-
+          }// condicion que toma en cuenta solo estudiantes activas
+          console.log('la cantidad de estudiantes que superan la meta de 70% tech en promedio de todos los sprints es: ' + superantech);
+          console.log('la cantidad de estudiantes que superan la meta de 70% en HSE en promedio de todos los sprints es: ' + superanHSE);
           // hallando la cantidad todal de estudiantes INACTIVAS por generacion
           var inactiveStudents = totalstudents - activeStudents;
-          console.log('activas: ' + activeStudents);
-          console.log('inactivas: ' + inactiveStudents);
-          // cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos tecnicos 70% en promedio por todos los sprints sprint
-          /*var studentsSuperan = 0;
-            for (j = 0; j < data[sede][generation]['students'][i]['sprints'].length; j++) {
-              if (data[sede][generation]['students'][i]['sprints'][j]['score']['tech'] > 1260) {
-                studentsSuperan ++;
-              } else {
-                studentsSuperan = studentsSuperan;
-              }
-            };// for que recorre cada srpint de todas las esrudianyes de la sede y generacion escogida
-          console.log('cantidad de estudiantes que superan la meta puntos tecnicos de todos los sprint: ' + studentsSuperan);*/
+          console.log('numero de estudiantes activas: ' + activeStudents);
+          console.log('numero de estudinates inactivas: ' + inactiveStudents);
+
+          // jalando data de estudiantes para agregar a cuadrso de cada estudiante
 
 
-          // creando for que recorra los datos de las estudiantes
-          /*for (m = 0; m < totalstudents; m++) {
-            var arrStudents = students[m] ;
-            // condicion que solo recorre estuidnates activas
-            if (arrStudents.active === true) {
-              // cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos tecnicos 70% en promedio por todos los sprints sprint
-              var superantech = 0;
-              for (k = 0; k < students[m]['sprints'].length; k++) {
-                var score = students[m]['sprints'][k]['score'] ;
-                if (score['tech'] > 1260) {
-                  superantech ++;
-                } else {
-                  superantech = superantech;
-                }
-              };// for que recorre cada srpint de todas las esrudianyes de la sede y generacion escogida
-              console.log('cantidad de estudiantes que superan la meta puntos tecnicos de todos los sprint: ' + superantech);
-            // }// condicion que solo recorre estudiantes activas
-            /*
-            for (var j = 0; j < data[sede][generation]['students'][i]['sprints'].length; j++) {
-
-              var score = data[sede][generation]['students'][i]['sprints'][j]['score'] ;
-              // console.log(data[sede][generation]['students'][i]['sprints'][j]['score']);
-              // console.log(data[sede][generation]['students'][i]['sprints'][j]['score']['tech']);
-              if (score['tech'] > 1260) {
-                var HighScoreTech = score['tech'];
-                console.log(HighScoreTech);
-              };
-            }
-
-            // # de estudiantes que pasaron el 70% en Tech y Hse0
-            /* var scoreHse = '';
-            for (var i2 = 0; i2 < data[sede][generation]['students'][i]['sprints'].length; i2++) {
-              if (score[i2].hse > 840 && score[i2].tech > 1260) {
-                var studentsHighScore = score[i2].hse.length;
-                console.log(studentsHighScore);
-              };
-            };
-            } ;// condicion que toma en cuenta solo etudinates activas
-          }; */// for que recorre la data de todad las estudinates de la sede y genración escogida
-
-
-          // espacio puesto a proposito para separar.
+          //
         }); // evento que sucede al dar click en cualquier generación;
       };// for que recorre las generaciones para hacer eventos click en cualquier generacipon
     });// función o evento general click en cualquier  sede  multiples eventos
   };// for que recorre sedes para hacer ventos click en cualquier sede
 });// general
-
-
-          //  ingresando a cada sprint
-           /*var score = students[i1].sprints;
-           // # de estudiantes que pasaron el 70% en Tech y Hse0
-           var scoreHse = '';
-           for (var i2 = 0; i2 < score.length; i1++) {
-             if (score[i2].hse > 840 && score[i2].tech > 1260) {
-               var studentsHighScore = score[i2].hse.length;
-               console.log(studentsHighScore);
-             };
-           };
-         };*/
-
-          /*var studentsSuperanTech = 0;
-          for (i = 0; i < data[sede][generation]['students'].length; i++) {
-            console.log(data[sede][generation]['students'][i]['sprints']);
-            for (j = 0; j < data[sede][generation]['students'][i]['sprints'].length; j++){
-              if(data[sede][generation]['students'][i]['sprints'][j]['score']['tech'].length !== 0 && data[sede][generation]['students'][i]['sprints'][j]['score']['tech'].length > 1260) {
-               studentsSuperanTech ++;
-               }
-              }
-          };*/
-
-          // cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos tecnicos en promedio y por sprint de tech
-
-           //if (data[sede][generation]['students'][i]['sprints'][0]['score']['tech'] > 1260 &&  ) {
-            //  studentsSuperanTech ++;
-          //} else {
-            //  studentsSuperanTech = studentsSuperanTech;
-            //}
-
-          //console.log('cantidad de estudiantes que superan la meta de puntos tecnicos en promedio y en el primer sprint : ' + studentsSuperanTech);
-
-
-
-          /*console.log('cantidad de  estudiantes que superan la meta de puntos tecnicos en promedio y e el segundo sprint: ' + studentsSuperanTech);
-
-          var studentsSuperanTech = 0;
-          for (i = 0; i < data[sede][generation]['students'].length; i++) {
-            if (data[sede][generation]['students'][i]['sprints'][2]['score']['tech'] > 1260) {
-              studentsSuperanTech ++;
-            } else {
-              studentsSuperanTech = studentsSuperanTech;
-            }
-          };
-          console.log('cantidad de estudiantes que superan la meta de puntos tecnicos en promedio y en el tercer sprint: ' + studentsSuperanTech);
-
-          var studentsSuperanTech = 0;
-          for (i = 0; i < data[sede][generation]['students'].length; i++) {
-            if (data[sede][generation]['students'][i]['sprints'][3]['score']['tech'] > 1260) {
-              studentsSuperanTech ++;
-            } else {
-              studentsSuperanTech = studentsSuperanTech;
-            }
-          };
-          console.log('cantidad de estudiantes que superan la meta de puntos tecnicos en promedio y en el cuarto sprint: ' + studentsSuperanTech);
-          */
-
-          // cantidad y el porcentaje que representa el total de estudiantes que superan la meta de puntos tecnicos en promedio y por sprint de hse
-          /*var studentsSuperanHse = 0;
-          for (i = 0; i < data[sede][generation]['students'].length; i++) {
-            if (data[sede][generation]['students'][i]['sprints'][0]['score']['hse'] > 840) {
-              studentsSuperanHse ++;
-            } else {
-              studentsSuperanHse = studentsSuperanHse;
-            }
-          };
-          console.log('cantidad de estudiantes que superan la meta de puntos HSE en promedio y en el primer sprint: ' + studentsSuperanHse);
-
-
-          // hallando la cantidad todal de estudiantes ACTIVAS por generación
-          console.log(students[0]['active']);
-        /*  console.log(totalstudents[1]);*/
-        /*
-          var activeStudents = 0;
-          for (var i1 = 0; i1 < students.length; i1++) {
-            if (students[i1]['active']) {
-               activeStudents++;
-             };*/
-             //console.log(activeStudents);
-
-            // hallando la cantidad todal de estudiantes INACTIVAS por generacion
-           /*var inactiveStudents = totalstudents - activeStudents;
-           console.log('activas: ' + activeStudents);
-            console.log('inactivas: ' + inactiveStudents);
-            //var scoreHse = students[i1].sprints;
-          };*/
-
-
-/*
-var students = data[sede][generation].students ;
-          var studentAcount = students.length;
-
-          // hallando la cantidad todal de estudiantes ACTIVAS por generación
-          var activeStudents = 0;
-          for (var i1 = 0; i1 < totalstudents; i1++) {
-            if (students[i1].active === true) {
-              var activeStudents = (activeStudents + 1);
-            };
-            // hallando la cantidad todal de estudiantes INACTIVAS por generacion
-            var inactiveStudents = totalstudents - activeStudents;
-            console.log(inactiveStudents);
-            var scoreHse = students[i1].sprints;
-
-          }; */
