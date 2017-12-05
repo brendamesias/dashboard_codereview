@@ -2,6 +2,14 @@ window.addEventListener('load', function() {
   // agregando elemtos del student.html al DOM
   var containerStudents = document.getElementById('container_students');
   var perfil = document.getElementById('perfil');
+  var foto = document.getElementById('photo_perfil');
+  var name = document.getElementById('name');
+  var active = document.getElementById('active');
+  var notatechtotal = document.getElementById('notatechtotal');
+  var notaHSEtotal = document.getElementById('notaHSEtotal');
+  var totalSprints = document.getElementById('totalSprints');
+  var porcentsNotesTech = document.getElementById('porcentsNotesTech');
+  var porcentsNotesHSE = document.getElementById('porcentsNotesHSE');
 
   // variable que almacena  el texto junto de sede y generacion, el cual se muestra en la pantalla
   var sedeGeneration = document.getElementById('sede_generation');
@@ -120,25 +128,66 @@ window.addEventListener('load', function() {
           console.log('numero de estudiantes activas: ' + activeStudents);
           console.log('numero de estudinates inactivas: ' + inactiveStudents);
 
-          google.charts.load('current', {'packages': ['corechart']});
-          google.charts.setOnLoadCallback(drawChart);
+          // jalando data de estudiantes para agregar a cuadrso de cada estudiante
+          for (var i1 = 0; i1 < totalstudents; i1++) {
 
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Task', 'Hours per Day'],
-              ['Activas', activeStudents],
-              ['Inactivas', inactiveStudents],
+            var studentName = students[i1]['name'];
+            var estadoactive = students[i1]['active'];
+            var photo = students[i1]['photo'] ;
+            totalTech = 0 ;
+            totalHSE = 0 ;
+            for (var j = 0; j < students[i1]['sprints'].length; j++) {
+              totalTech = totalTech + students[i1]['sprints'][j]['score']['tech'] ;
+              totalHSE = totalHSE + students[i1]['sprints'][j]['score']['hse'] ;
+            }
+            var totaltechXsprint = 1800 * students[i1]['sprints'].length ;
+            var promeditech = totalTech / (totaltechXsprint / 100) ;
+            var totalHSEXsprint = 1200 * students[i1]['sprints'].length ;
+            var promediHSE = totalHSE / (totalHSEXsprint / 100) ;
 
-            ]);
+            var informationStudent = perfil.cloneNode(true);
 
-            var options = {
-              title: 'My Daily Activities'
-            };
+            // console.log(informationStudent.children[3].firstElementChild.children[1].children);
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            foto.src = photo ;
+            name.textContent = studentName ;
+            active.textContent = estadoactive ;
+            notatechtotal.textContent = Math.round(promeditech) + '%' ;
+            notaHSEtotal.textContent = Math.round(promediHSE) + '%' ;
+            // console.log(informationStudent.children[3].firstElementChild.children[1].children);
 
-            chart.draw(data, options);
-          }// funcion de graficos charart
+            for (var j = 0; j < students[i1]['sprints'].length; j++) {
+              console.log(students[i1]['sprints'][j]['number']);
+            }
+
+
+
+            /* for (var i = 0; i < students[i1]['sprints'].length; i++) {
+              var newDiv = document.createElement('th');
+              var numberSprint = students[i1]['sprints']['number'] ;
+              console.log(numberSprint);
+              // var newContent = document.createTextNode("");
+            }*/
+
+            // newDiv.appendChild(newContent); //añade texto al div creado.
+
+            for (var i4 = 1; i4 < informationStudent.children[3].firstElementChild.children[1].children.length; i4++) {
+              var boxNoteTechXsprint = informationStudent.children[3].firstElementChild.children[1].children[i4];
+              // console.log(boxNoteTechXsprint);// me da un array de todos los td de donde van las nota tech de cada sptint de la tabla en el html
+              for (var i5 = 0; i5 < students[i1]['sprints'].length; i5++) {
+                var scoreTechXsprint = students[i1]['sprints'][i5]['score']['tech'];
+                // console.log(scoreTechXsprint);
+                // console.log(i5);
+                var porcenTechXsprint = Math.round(scoreTechXsprint / 18) ;
+                // console.log(porcenTechXsprint);
+                boxNoteTechXsprint.textContent = porcenTechXsprint + '%' ;
+              }
+            }
+
+            containerStudents.appendChild(informationStudent);
+            //
+          }
+          //
         }); // evento que sucede al dar click en cualquier generación;
       };// for que recorre las generaciones para hacer eventos click en cualquier generacipon
     });// función o evento general click en cualquier  sede  multiples eventos

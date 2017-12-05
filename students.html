@@ -5,10 +5,6 @@
     <title>Data Dashboard</title>
     <link href="https://fonts.googleapis.com/css?family=Armata|Source+Code+Pro" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <meta charset="utf-8">
-    <title>Data Dashboard</title>
-    <link href="https://fonts.googleapis.com/css?family=Armata|Source+Code+Pro" rel="stylesheet">
-    <link rel="stylesheet" href="./css/main.css">
   </head>
   <body>
     <header>
@@ -51,50 +47,38 @@
         <img id="photo_perfil"src="http://dummyimage.com/162x148.png/ff4444/ffffff" alt="photo">
 
         <div class="basic_data_perfil">
-          <div><span>NAME: </span><h2 id="name">Donna Sloper</h2></div>
-          <div><span>Active: </span> <h2 id="active">true</h2></div>
+          <div><span>NAME: </span><h2 id="name"></h2></div>
+          <div><span>Active: </span> <h2 id="active"></h2></div>
         </div>
 
         <div id="skills">
           <div class="tech">
-          <span>Tech Skills: </span><h2 id="notatechtotal">70%</h2>
+          <span>Tech Skills: </span><h2 id="notatechtotal"></h2>
           </div>
           <div class="life">
-          <span>Life Skills: </span><h2 id="notaHSEtotal">68%</h2>
+          <span>Life Skills: </span><h2 id="notaHSEtotal"></h2>
           </div>
         </div>
 
         <table>
-          <tr>
+          <tr id="totalSprints">
             <th>Sprints</th>
-            <th>1er</th>
-            <th>2do</th>
-            <th>3er</th>
-            <th>4to</th>
+            <th>1</th>
           </tr>
-          <tr>
+          <tr id="porcentsNotesTech">
             <td>Tech</td>
-            <td id="tech_1sprint">50%</td>
-            <td id="tech_2sprint">80%</td>
-            <td id="tech_3sprint">50%</td>
-            <td id="tech_4sprint">50%</td>
          </tr>
-         <tr>
+         <tr id="porcentsNotesHSE">
            <td>HSE</td>
-           <td id="hse_1sprint">50%</td>
-           <td id="hse_2sprint">80%</td>
-           <td id="hse_3sprint">50%</td>
-           <td id="hse_4sprint">50%</td>
          </tr>
         </table>
       </div>
     </div>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
 		<!-- Base de datos -->
 		<script src="./js/data.js"></script>
 		<!-- Aquí va tus archivos JS -->
-    <script src="./js/app.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="./js/students.js"></script>
 
     </script>
   </body>
